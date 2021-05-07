@@ -1,0 +1,125 @@
+/* GENERAL (FROM ROOT) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 40%, #e6dee9 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 5rem auto;
+    padding: 0 0.5rem;
+}
+
+/* PROFILE */
+
+.profile-container {
+    width: 90%;
+    min-height: 500px;
+    background: linear-gradient(
+        to top,
+        rgb(173, 181, 255),
+        rgba(0,0,0,0)
+    );
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgb(87, 87, 87, 0.6);
+    position: relative;
+}
+
+/* PROFILE IMAGE */
+
+.prof-img::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('../img/flag.png');
+}
+
+.prof-img {
+    width: 250px;
+    position: relative;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 100px;
+}
+
+.prof-img img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* PROFILE LAST SEEN */
+
+.last-login {
+    color: rgb(92, 92, 92);
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 0.9rem;
+}
+
+@media (max-width:768px) { /* NEEDS FIX */
+    .last-login {
+        top: 40%;
+        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* PROFILE NAME */
+
+.prof-name {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* MAIN PROFILE CONTENT */
+
+ul{
+    list-style: none;
+}
+
+.prof-main {
+    display: flex;
+    align-items: center;
+}
+
+.prof-main > div {
+    flex: 1 auto;
+    text-align: center;
+}
+
+/* DETAILS/INTERESTS SEPERATOR */
+
+.prof-details {
+    position: relative;
+}
+
+.prof-details::after {
+    content: "";
+    width: 2px;
+    display: block;
+    background-color: rgb(131, 131, 131);
+    height: 70px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 35%;
+}
