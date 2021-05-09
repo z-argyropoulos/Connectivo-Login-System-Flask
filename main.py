@@ -1,11 +1,21 @@
-from flask import Flask
+from flask import Flask, render_template
+
 app = Flask(__name__)
 
 
 # Root Route
 @app.route('/')
 def home():
-    return 'Home page'
+
+    # Signed In test values
+    signedIn = True      # False
+    username = 'Noah_Tremblay'      # ''
+
+    return render_template(
+        'root/index.html',
+        signedIn=signedIn,
+        username=username
+    )
 
 
 # Login Route
