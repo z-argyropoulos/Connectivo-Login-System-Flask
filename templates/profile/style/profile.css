@@ -75,12 +75,12 @@ body {
     font-size: 0.9rem;
 }
 
-@media (max-width:768px) { /* NEEDS FIX */
+@media (max-width:768px) {
     .last-login {
-        top: 40%;
-        right: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        display: block;
+        position: initial;
+        text-align: center;
+        margin: -3rem 0 4rem 0;
     }
 }
 
@@ -88,7 +88,6 @@ body {
 
 .prof-name {
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 /* MAIN PROFILE CONTENT */
