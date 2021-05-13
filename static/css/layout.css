@@ -34,7 +34,7 @@ a {
     position: relative;
 }
 
-a::after {
+a::after,button::after {
     content: "";
     display: block;
     position: absolute;
@@ -45,9 +45,10 @@ a::after {
     left: 0;
     width: 0;
     background-color: rgb(146, 134, 255); /* default */
+    border-radius: inherit;
 }
 
-a:hover::after {
+a:hover::after,button:hover::after {
     transition: width 0.5s ease-in-out;
     width: 100%;
 }

@@ -1,0 +1,213 @@
+.login-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.on-top {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60vh;
+    min-height: 600px;
+    background-color: rgb(200, 185, 255);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 15px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* WELCOME */
+
+.welcome-container {
+    height: 100%;
+    width: 65%;
+    border-radius: 15px 0 0 15px;
+    position: relative;
+    color: white;
+}
+
+.welcome-container:after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 15px 0 0 15px;
+    background: linear-gradient(to right,rgba(0,0,0,0.79) ,rgba(0,0,0,0) );
+}
+
+.welcome-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px 0 0 15px;
+    z-index: -1;
+}
+
+.welcome-text {
+    line-height: 2.5em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 3rem;
+}
+
+.welcome-text h2 {
+    font-weight: 400;
+}
+
+/* LOGIN */
+
+.login {
+    position: relative;
+    width: 35%;
+    display: block;
+}
+
+.sign-in {
+    width: 65%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.login-form {
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    animation: display 0.8s;
+}
+
+@keyframes display {
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+
+@keyframes popup {
+    from {opacity:0;}
+    to {opacity: 0.8;}
+}
+
+
+/* form */
+input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.65);
+    border: none;
+    border-bottom: 2px solid white;
+    margin: 0.3rem 0 1.5rem 0;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+label {
+    color: black;
+}
+
+button {
+    width: 100%;
+    border: 1px solid black;
+    font-weight: 400;
+    font-family: inherit;
+    font-size: 1.3rem;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    border-radius: 60px;
+    background: rgba(0, 0, 0, 0);
+    position: relative;
+}
+
+button::after {
+    background-color: white;
+}
+
+svg {
+    position: absolute;
+    top: 30%;
+    right: 20px;
+}
+
+@media (max-width: 900px) {
+    .on-top {
+        flex-wrap: wrap;
+        height: 90vh;
+    }
+    .on-top > * {
+        flex: 1 0 100%;
+    }
+
+    .welcome-container {
+        height: 30vh;
+    }
+
+    .welcome-container img,.welcome-container::after {
+        border-radius: 15px 15px 0 0;
+    }
+
+    .sign-in {
+        width: 80%;
+        position: initial;
+        transform: none;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sign-in img {
+        width: 200px;
+    }
+
+    form {
+        flex: 1 0 100%;
+    }
+}
+
+/* login-result  */
+
+/* .login-result img {
+    width: 50px;
+    margin-bottom: 1rem;
+}
+
+.login-result {
+    width: 500px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    opacity: 0;
+    animation: popup 1s 5s forwards;
+}
+
+.login-result h2{
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+@media (max-width:500px) {
+    .login-result {
+        width: calc(100% - 3px);
+    }
+
+    h2{
+        font-size: 1rem;
+    }
+} */
