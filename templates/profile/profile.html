@@ -1,44 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="style/profile.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <div class="profile-container">
-            <div class="prof-img">
-                <img src="img/profile.jpg" alt="Profile Image">
-            </div>
-            <span class="last-login"><u>Last seen:</u> 5mins ago</span>
-            <h2 class="prof-name">Noah Tremblay</h2>
-            <div class="prof-main">
-                <div class="prof-details">
-                    <h3>Details</h3>
-                    <ul>
-                        <li><b>Username: </b>noah_trem</li>
-                        <li><b>Email: </b>noah_trembl01@gmail.com</li>
-                        <li><b>Nationality: </b>Canadian</li>
-                        <li><b>Mobile Phone: </b>6967854895</li>
-                        <li><b>About: </b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi veniam placeat voluptatum totam voluptate quo suscipit non ex cum.</li>
-                    </ul>
-                </div>
-                <div class="prof-interests">
-                    <h3>Interests</h3>
-                    <ul>
-                        <li><h4 class="interest">Food</h4></li>
-                        <li><h4 class="interest">Football</h4></li>
-                        <li><h4 class="interest">Cooking</h4></li>
-                        <li><h4 class="interest">Running</h4></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+{% extends "_layout.html" %}
+
+ {% block title %}{{ profileData['username'] }} Profile{% endblock title %}
+
+{% block cssFiles %}
+<link rel="stylesheet"  href="{{url_for('static', filename='css/profile.css')}}"/>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="profile-container">
+    <div class="prof-img">
+      <img src="img/profile.jpg" alt="Profile Image" />
     </div>
-</body>
-</html>
+    <span class="last-login"><u>Last seen:</u> 5mins ago</span>
+    <h2 class="prof-name">{{ profileData['fullname'] }}</h2>
+    <div class="prof-main">
+      <div class="prof-details">
+        <h3>Details</h3>      {# in future replace fields with for and list keys #}
+        <ul>
+          <li><b>Username: </b>{{ profileData['username'] }}</li>
+          <li><b>Email: </b>{{ profileData['email'] }}</li>
+          <li><b>Nationality: </b>{{ profileData['nationality'] }}</li>
+          <li><b>Mobile Phone: </b>{{ profileData['mobile'] }}</li>
+          <li>
+            <b>About: </b> {{ profileData['about'] }}
+          </li>
+        </ul>
+      </div>
+      <div class="prof-interests">
+        <h3>Interests</h3>
+        <ul>
+          {% for interest in profileData['interests'] %}
+            <li><h4 class="interest">{{interest}}</h4></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

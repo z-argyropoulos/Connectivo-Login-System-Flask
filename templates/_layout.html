@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block head %}
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"/>
+    <title>{% block title %}{% endblock %} - Connectivo</title>     {# Title: ______ - Connectivo #}
+    <link rel="stylesheet"  href="{{url_for('static', filename='css/layout.css')}}"/>     {# General CSS #}
+    {% block cssFiles %}{% endblock %}      {# Additional CSS #}
     {% endblock %}
+    <link rel="icon" href="{{url_for('static', filename='img/favicon.svg')}}"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  {% block main %}
+  {% block content %}
   {% endblock %}
 </body>
 </html>

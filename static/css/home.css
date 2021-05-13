@@ -1,0 +1,28 @@
+h1,h2 {
+    font-weight: 400;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+}
+
+.username {
+    font-weight: bold;
+}
+
+.redirects {
+    margin: 2rem 0;
+}
+
+/* LOGOUT BUTTON */
+
+#logout::after {
+    background-color: rgb(255, 70, 70);
+}

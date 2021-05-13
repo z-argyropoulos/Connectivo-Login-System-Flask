@@ -33,4 +33,22 @@ def logout():
 # Profile Route
 @app.route('/profile/<string:username>')
 def profile(username):
-    return username
+
+    # User Data (from DB)
+    data = {
+        'fullname': 'Noah Tremblay',
+        'username': username,
+        'email': 'noah_trembl01@gmail.com',
+        'nationality': 'Canadian',
+        'mobile': '6967854895',
+        'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
+        non ex um.''',
+        'interests': ['Food', 'Football', 'Cooking', 'Running']
+    }
+
+    # Render profile page
+    return render_template(
+        'profile/profile.html',
+        profileData=data,
+    )

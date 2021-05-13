@@ -2,9 +2,13 @@
 
 {% block title %}Homepage{% endblock title %}
 
-{% block main %}
+{% block cssFiles %}
+<link rel="stylesheet"  href="{{url_for('static', filename='css/home.css')}}"/>
+{% endblock cssFiles %}
+
+{% block content %}
 <div class="container">
-  {% if signedIn %}
+  {% if signedIn %}       {# if user is signed in -> welcome him #}
     <div class="greeting">
       <h1>Welcome, <span class="username">{{ username }}</span>!</h1>
     </div>
@@ -15,7 +19,7 @@
         <a href="#" id="logout">Logout</a>
       </div>
     </div>
-  {% else %}
+  {% else %}      {# if user not signed in -> redirect to login #}
     <h1>Hey there!</h1>
     <h2>To view this page you need to sign in first.</h2>
     <a href="{{url_for('login')}}">Sign In</a>
