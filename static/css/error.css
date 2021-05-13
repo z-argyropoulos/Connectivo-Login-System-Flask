@@ -1,5 +1,3 @@
-/* GENERAL COPY FROM 404 */
-
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-#container404 {
+#errorContainer {
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 1rem;
@@ -22,7 +20,7 @@ body {
     align-items: center;
 }
 
-#container404 > div {
+#errorContainer > div {
     flex: 1 50%;
 }
 
@@ -39,6 +37,10 @@ body {
     font-size: 1.8em;
 }
 
+p {
+    margin: 1.5rem 0;
+}
+
 /* IMAGE */
 
 .error-svg {
@@ -46,12 +48,12 @@ body {
 }
 
 @media (max-width: 768px) {
-    #container404 {
+    #errorContainer {
         flex-direction: column;
         text-align: center;
     }
 
-    #container404 > div {
+    #errorContainer > div {
         flex: 100%;
     }
 
@@ -72,7 +74,7 @@ body {
     }
 }
 
-/* COPY FROM ROOT FOR A LINK */
+/* INHERIT FROM _LAYOUT */
 
 a {
     text-decoration: none;
@@ -100,10 +102,4 @@ a::after {
 a:hover::after {
     transition: width 0.5s ease-in-out;
     width: 100%;
-}
-
-/* ADDITIONAL CSS */
-
-p {
-    margin: 1.5rem 0;
 }

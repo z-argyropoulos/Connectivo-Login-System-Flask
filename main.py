@@ -21,7 +21,9 @@ def home():
 # Login Route
 @app.route('/login')
 def login():
-    return 'Login form'
+    return render_template(
+        'login/login.html'
+    )
 
 
 # Logout Route
@@ -51,4 +53,21 @@ def profile(username):
     return render_template(
         'profile/profile.html',
         profileData=data,
+    )
+
+
+# Error Pages (for testing)
+@app.route('/error/<int:errorCode>')
+def error(errorCode):
+
+    # Coresponging messages to error codes
+    errCodeDict = {
+        404: "Page Not Found",
+        401: "Unauthorized access"
+    }
+
+    return render_template(
+        f'error/{errorCode}.html',
+        errorCode=errorCode,
+        errorMessage=errCodeDict[errorCode]
     )
