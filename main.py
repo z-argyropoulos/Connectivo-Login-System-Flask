@@ -46,7 +46,7 @@ def profile(username):
         'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
         non ex um.''',
-        'interests': ['Food', 'Football', 'Cooking', 'Running'],
+        'interests': ['Cooking', 'Football', 'Volunteering', 'Running'],
         'last-seen': '5 mins ago'     # in future function date -> elapsed time
     }
 

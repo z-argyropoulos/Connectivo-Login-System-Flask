@@ -11,6 +11,12 @@
     .prof-img::after{
       background: url("{{ url_for('static', filename='img/icons/flags/{countryCode}.png'.format(countryCode=profileData['nationality'])) }}");
     }
+
+    {% for interest in profileData['interests'] %}    {# for every interest set image with the use of index #}
+      .prof-interests ul li:nth-child({{ loop.index }})  {
+        background-image: url("{{ url_for('static', filename='img/interests/{}.jpg'.format(interest)) }}")
+      }
+    {% endfor %}
   </style>
 {% endblock %}
 
