@@ -41,12 +41,13 @@ def profile(username):
         'fullname': 'Noah Tremblay',
         'username': username,
         'email': 'noah_trembl01@gmail.com',
-        'nationality': 'Canadian',
+        'nationality': 'can',        # Canada -> can (in future dictionary)
         'mobile': '6967854895',
         'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
         Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
         non ex um.''',
-        'interests': ['Food', 'Football', 'Cooking', 'Running']
+        'interests': ['Food', 'Football', 'Cooking', 'Running'],
+        'last-seen': '5 mins ago'     # in future function date -> elapsed time
     }
 
     # Render profile page

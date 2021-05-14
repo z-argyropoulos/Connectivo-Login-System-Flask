@@ -6,13 +6,21 @@
 <link rel="stylesheet"  href="{{url_for('static', filename='css/profile.css')}}"/>
 {% endblock %}
 
+{% block dataStyle %}
+  <style>
+    .prof-img::after{
+      background: url("{{ url_for('static', filename='img/icons/flags/{countryCode}.png'.format(countryCode=profileData['nationality'])) }}");
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
 <div class="container">
   <div class="profile-container">
     <div class="prof-img">
-      <img src="img/profile.jpg" alt="Profile Image" />
+      <img src="{{ url_for('static', filename='img/profiles/{}.jpg'.format(profileData['username']))}}" alt="{{profileData['username']}}'s profile image" />
     </div>
-    <span class="last-login"><u>Last seen:</u> 5mins ago</span>
+     <span class="last-login"><u>Last seen:</u> {{ profileData['last-seen'] }}</span>
     <h2 class="prof-name">{{ profileData['fullname'] }}</h2>
     <div class="prof-main">
       <div class="prof-details">
