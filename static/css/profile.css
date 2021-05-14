@@ -5,11 +5,7 @@
     max-width: 1400px;
     min-height: 500px;
     padding: 0 1.8rem;
-    background: linear-gradient(
-        to top,
-        rgb(173, 181, 255),
-        rgba(0,0,0,0)
-    );
+    background: rgb(223, 214, 255);
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 2px 5px rgb(87, 87, 87, 0.6);
