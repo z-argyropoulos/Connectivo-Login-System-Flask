@@ -15,8 +15,8 @@
     <div class="options">
       <h2>Would you like to..</h2>
       <div class="redirects">
-        <a href="{{url_for('profile', username=username)}}">View your profile</a>
-        <a href="#" id="logout">Logout</a>
+        <button><a href="{{url_for('profile', username=username)}}">View your profile</a></button>
+        <button id="logout"><a href="#">Logout</a></button>
       </div>
     </div>
   {% else %}      {# if user not signed in -> redirect to login #}
