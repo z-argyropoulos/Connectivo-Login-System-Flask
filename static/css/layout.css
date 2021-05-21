@@ -56,3 +56,75 @@ button:hover::after {
     transition: width 0.5s ease-in-out;
     width: 100%;
 }
+
+/* STICKY TOP */
+.stickyTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 3rem 0;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.stickyTop img {
+    width: 40px;
+    margin-right: 1rem;
+}
+
+@media (max-width: 900px) {
+    .stickyTop {
+        padding: 1.5rem 0;
+        font-size: 0.7rem;
+    }
+    .stickyTop img {
+        width: 30px;
+        margin-right: 0.5rem;
+    }
+}
+
+/* USER */
+
+.user-profile {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user-profile a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user-profile button {
+    margin-left: 0.5rem;
+}
+
+@media (max-width:500px) {
+    .user-profile span {
+        display: none;
+    }
+    .user-profile button {
+        margin: 0;
+    }
+}
+
+/* LOGOUT BUTTON */
+
+#logout::after {
+    background-color: rgb(255, 70, 70);
+}
