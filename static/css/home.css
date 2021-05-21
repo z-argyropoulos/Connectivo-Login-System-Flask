@@ -1,5 +1,4 @@
 h1,h2 {
-    font-weight: 400;
     margin: 1rem 0;
 }
 
@@ -21,8 +20,4 @@ h1,h2 {
     margin: 2rem 0;
 }
 
-/* LOGOUT BUTTON */
 
-#logout::after {
-    background-color: rgb(255, 70, 70);
-}
