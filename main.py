@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
@@ -35,6 +35,8 @@ def logout():
 # Profile Route
 @app.route('/profile/<string:username>')
 def profile(username):
+    if username != 'Noah_Tremblay':  # For testing purposes
+        abort(401)
 
     # User Data (from DB)
     data = {
@@ -54,21 +56,25 @@ def profile(username):
     return render_template(
         'profile/profile.html',
         profileData=data,
+        username=username
     )
 
 
-# Error Pages (for testing)
-@app.route('/error/<int:errorCode>')
-def error(errorCode):
-
-    # Coresponging messages to error codes
-    errCodeDict = {
-        404: "Page Not Found",
-        401: "Unauthorized access"
-    }
-
+# 401 ERROR HANDLER (UNAUTHORIZED ACCESS)
+@app.errorhandler(401)
+def unauthorized_error_page(e):
     return render_template(
-        f'error/{errorCode}.html',
-        errorCode=errorCode,
-        errorMessage=errCodeDict[errorCode]
-    )
+        'error/401.html',
+        errorCode=401,
+        errorMessage="Unauthorized Access"
+    ), 401
+
+
+# 404 ERROR HANDLER (PAGE NOT FOUND)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template(
+        'error/404.html',
+        errorCode=404,
+        errorMessage="Page Not Found"
+    ), 404
