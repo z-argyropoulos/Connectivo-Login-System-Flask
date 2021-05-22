@@ -140,6 +140,9 @@ svg {
 }
 
 @media (max-width: 900px) {
+    .login-container {
+        height: calc(100vh - 3.5rem);
+    }
     .on-top {
         flex-wrap: wrap;
         height: 90vh;

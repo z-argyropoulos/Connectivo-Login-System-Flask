@@ -5,7 +5,7 @@
     max-width: 1400px;
     min-height: 500px;
     padding: 0 1.8rem;
-    background: rgb(223, 214, 255);
+    background: rgb(200, 185, 255, 0.5);
     margin: 0 auto 2rem auto;
     border-radius: 20px;
     box-shadow: 0 2px 5px rgb(87, 87, 87, 0.6);
@@ -32,7 +32,7 @@
     top: -75px;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 100px;
+    margin-top: 65px;
 }
 
 .prof-img img {
