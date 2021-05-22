@@ -1,4 +1,5 @@
 from flask import Flask, render_template, abort
+from os import environ
 
 app = Flask(__name__)
 
@@ -78,3 +79,7 @@ def page_not_found(e):
         errorCode=404,
         errorMessage="Page Not Found"
     ), 404
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=environ.get('SERVER_PORT', 5000))
