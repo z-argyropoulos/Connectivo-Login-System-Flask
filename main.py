@@ -1,57 +1,81 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request, session, url_for, redirect
 from os import environ
+from datetime import datetime
 
 app = Flask(__name__)
+
+# SESSION KEY
+app.secret_key = b'\xd1s}\xa2m\xbf\xa8\x12`0\xecR^\x14\xc7e\xfa\nr\xb2\x82\xc8\xdf'
 
 
 # Root Route
 @app.route('/')
 def home():
-
-    # Signed In test values
-    signedIn = True      # False
-    username = 'Noah_Tremblay'      # ''
-
     return render_template(
-        'root/index.html',
-        signedIn=signedIn,
-        username=username
+            'root/index.html',
+            username=(session['username'] if 'username' in session else None)
     )
 
 
 # Login Route
-@app.route('/login')
-def login():
+@app.get('/login')
+def show_login_form():
     return render_template(
         'login/login.html'
     )
 
 
+@app.post('/login')
+def sign_in():
+    loginError = False
+    """ get form values """
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    """ validation with DB  """
+    session['username'] = username
+
+    if loginError:
+        app.logger.debug('Sign in error')
+        return render_template('login/login.html')
+    else:
+        session['username'] = username
+        return redirect(url_for('home'))
+
+
 # Logout Route
 @app.route('/logout')
 def logout():
-    return 'Ok'
+    """ clear all session keys
+    use this method as
+    session.clear() would clear flash messages
+    before displaying after session.clear()"""
+    for key in list(session.keys()):
+        session.pop('username')
+    return redirect(url_for('home'))
 
 
 # Profile Route
 @app.route('/profile/<string:username>')
 def profile(username):
-    if username != 'Noah_Tremblay':  # For testing purposes
-        abort(401)
 
-    # User Data (from DB)
-    data = {
-        'fullname': 'Noah Tremblay',
-        'username': username,
-        'email': 'noah_trembl01@gmail.com',
-        'nationality': 'can',        # Canada -> can (in future dictionary)
-        'mobile': '6967854895',
-        'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
-        non ex um.''',
-        'interests': ['Cooking', 'Football', 'Volunteering', 'Running'],
-        'last-seen': '5 mins ago'     # in future function date -> elapsed time
-    }
+    """ check if user should have access to this profile """
+    if username == session['username']:
+        # User Data (from DB)
+        data = {
+            'fullname': 'Noah Tremblay',
+            'username': username,
+            'email': 'noah_trembl01@gmail.com',
+            'nationality': 'can',        # Canada -> can (in future dictionary)
+            'mobile': '6967854895',
+            'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
+            non ex um.''',
+            'interests': ['Cooking', 'Football', 'Volunteering', 'Running'],
+            'last-seen': '5 mins ago'     # in future function date -> elapsed time
+        }
+    else:
+        abort(401)
 
     # Render profile page
     return render_template(

@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container">
-  {% if signedIn %}       {# if user is signed in -> welcome him #}
+  {% if username %}       {# if user is signed in -> welcome him #}
     <div class="greeting">
       <h1>Welcome, <span class="username">{{ username }}</span>!</h1>
     </div>
@@ -16,13 +16,13 @@
       <h2>Would you like to..</h2>
       <div class="redirects">
         <button><a href="{{url_for('profile', username=username)}}">View your profile</a></button>
-        <button id="logout"><a href="#">Logout</a></button>
+        <button id="logout"><a href="{{ url_for('logout') }}">Logout</a></button>
       </div>
     </div>
   {% else %}      {# if user not signed in -> redirect to login #}
     <h1>Hey there!</h1>
     <h2>To view this page you need to sign in first.</h2>
-    <a href="{{url_for('login')}}">Sign In</a>
+    <button><a href="{{url_for('sign_in')}}">Sign In</a></button>
   {% endif %}
 </div>
 {% endblock %}
