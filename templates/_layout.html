@@ -21,13 +21,9 @@
       <img src="{{url_for('static', filename='img/favicon.svg')}}"/>
       <h1>Connectivo</h1>
     </div>
-    <div class="user-profile">
-      <a href="{{url_for('profile', username=username)}}">
-        <img src="{{ url_for('static', filename='img/profiles/{}.jpg'.format(username))}}" alt="{{username}}'s profile image" />
-        <span>{{ username }}</span>
-      </a>
-      <button id="logout"><a href="#">Logout</a></button>
-    </div>
+    {# {% with loggedIn=connected %}
+      {% include "login_status_bar.html" %}
+    {% endwith %} #}
   </div>
   {% endblock %}
   {% block content %}
