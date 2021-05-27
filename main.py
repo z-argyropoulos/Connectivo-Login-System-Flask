@@ -1,4 +1,3 @@
-from logging import error
 from flask import Flask, render_template, abort, request, session, url_for, redirect, flash
 from os import environ
 from datetime import timedelta

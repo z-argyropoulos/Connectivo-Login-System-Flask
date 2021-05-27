@@ -1,7 +1,13 @@
 <div class="user-profile">
+{% if username %}
   <a href="{{url_for('profile', username=username)}}">
     <img src="{{ url_for('static', filename='img/profiles/{}.jpg'.format(username))}}" alt="{{username}}'s profile image" />
     <span>{{ username }}</span>
   </a>
-  <button id="logout"><a href="#">Logout</a></button>
+  <button id="logout"><a href="{{ url_for('logout') }}">Logout</a></button>
+
+{% else %}
+  <button><a href="{{ url_for('sign_in') }}">Sign In</a></button>
+{% endif %}
 </div>
+

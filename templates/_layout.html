@@ -21,9 +21,9 @@
       <img src="{{url_for('static', filename='img/favicon.svg')}}"/>
       <h1>Connectivo</h1>
     </div>
-    {# {% with loggedIn=connected %}
-      {% include "login_status_bar.html" %}
-    {% endwith %} #}
+    {% with username=username %}
+        {% include "login_status_bar.html" %}
+    {% endwith %}
   </div>
   {% endblock %}
   {% block content %}
