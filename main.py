@@ -1,5 +1,6 @@
 from flask import Flask, render_template, abort, request, session, url_for, redirect
 from os import environ
+from datetime import timedelta
 
 app = Flask(__name__)
 
@@ -44,7 +45,12 @@ def sign_in():
         app.logger.debug('Sign in error')
         return render_template('login/login.html')
     else:
+        # initialize a session
         session['username'] = username
+        # set session to be alive even when you close the browser
+        session.permanent = True
+        # set session timeout to 10 days (flask default 31days)
+        app.permanent_session_lifetime = timedelta(minutes=10)
         return redirect(url_for('home'))
 
 
@@ -56,7 +62,7 @@ def logout():
     session.clear() would clear flash messages
     before displaying after session.clear()"""
     for key in list(session.keys()):
-        session.pop('username')
+        session.pop(key)
     return redirect(url_for('home'))
 
 
