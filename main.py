@@ -5,7 +5,7 @@ from datetime import timedelta
 app = Flask(__name__)
 
 # SESSION KEY
-app.secret_key = b'\xd1s}\xa2m\xbf\xa8\x12`0\xecR^\x14\xc7e\xfa\nr\xb2\x82\xc8\xdf'
+app.config['SECRET_KEY'] = environ.get('SECRET_KEY', '1234')
 
 
 # Root Route
