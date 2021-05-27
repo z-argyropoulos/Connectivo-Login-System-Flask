@@ -6,6 +6,34 @@
 <link rel="stylesheet"  href="{{url_for('static', filename='css/login.css')}}"/>
 {% endblock %}
 
+{# handle error messages #}
+{% block dataStyle %}
+  <style>
+  {% if errors %}
+    .flash_msgs::before {
+      background-color: red;
+    }
+    {% for error in errors %}
+    .{{error.field}}::after {
+      content: "{{error.field}} is invalid";
+      display: inline-block;
+      color: red;
+      margin-left: 1rem;
+      font-size:0.9rem
+    }
+    #{{error.field}} {
+      border: 1px solid red;
+    }
+    {% endfor %}
+  {% else %}
+    .flash_msgs::before {
+      background-color: #8dfe24;
+    }
+  {% endif %}
+  </style>
+{% endblock %}
+
+
 {% block content %}
 <div class="login-container">
   <div class="on-top">
@@ -20,9 +48,9 @@
       <div class="sign-in">
         <img src="{{url_for('static', filename='img/icons/login.svg')}}" />
         <form action="{{ url_for('sign_in') }}" method='post'>
-          <label for="username">Username</label><br />
+          <label class="username" for="username">Username</label><br />
           <input type="text" id="username" name="username" /><br />
-          <label for="password">Password</label><br />
+          <label class="password" for="password">Password</label><br />
           <input type="password" id="password" name="password" /><br />
           <button type="submit">
             <span class="button-text">Sign In</span>
@@ -32,11 +60,10 @@
     </div>
   </div>
 </div>
-{# <div class="login-result">
-  <img src="{{url_for('static', filename='img/icons/login-failure.svg')}}" />
-  <h2>
-    Your username or/and your password is incorrect. Please try again.
-  </h2>
-</div> #}
+{% for message in get_flashed_messages() %}
+<div class="flash_msgs">
+  <small> {{ message }}</small>
+</div>
+{% endfor %}
 {% endblock %}
 

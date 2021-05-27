@@ -128,3 +128,38 @@ button:hover::after {
 #logout::after {
     background-color: rgb(255, 70, 70);
 }
+
+/* FLASH MESSAGES */
+.flash_msgs {
+    display: block;
+    width: 40%;
+    min-width: 320px;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: rgb(41, 41, 41);
+    color: white;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid black;
+    animation: disappear 10s forwards;
+}
+
+@keyframes disappear {
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.flash_msgs::before {
+    content: "";
+    display: block;
+    width: 4px;
+    background-color: rgba(0, 0, 0, 0);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

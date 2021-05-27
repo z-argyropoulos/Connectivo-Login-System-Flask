@@ -1,4 +1,5 @@
-from flask import Flask, render_template, abort, request, session, url_for, redirect
+from logging import error
+from flask import Flask, render_template, abort, request, session, url_for, redirect, flash
 from os import environ
 from datetime import timedelta
 
@@ -32,18 +33,21 @@ def show_login_form():
 
 @app.post('/login')
 def sign_in():
-    loginError = False
+    errors = []
 
     # get form values
     username = request.form.get('username')
     password = request.form.get('password')
 
     # validation with DB
-    session['username'] = username
+    # error with username
+    """ errors.append({'field': 'username'}) """
+    # error with password
+    """ errors.append({'field': 'password'}) """
 
-    if loginError:
-        app.logger.debug('Sign in error')
-        return render_template('login/login.html')
+    if errors:
+        flash('Invalid Credentials. Please try again.', 'error')
+        return render_template('login/login.html', errors=errors)
     else:
         # initialize a session
         session['username'] = username
@@ -51,6 +55,7 @@ def sign_in():
         session.permanent = True
         # set session timeout to 10 days (flask default 31days)
         app.permanent_session_lifetime = timedelta(minutes=10)
+        flash('You were successfully logged in.', 'success')
         return redirect(url_for('home'))
 
 
@@ -63,6 +68,7 @@ def logout():
     before displaying after session.clear()"""
     for key in list(session.keys()):
         session.pop(key)
+    flash('Successfully logged out.', 'info')
     return redirect(url_for('home'))
 
 
