@@ -1,6 +1,5 @@
 from flask import Flask, render_template, abort, request, session, url_for, redirect
 from os import environ
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -20,6 +19,11 @@ def home():
 # Login Route
 @app.get('/login')
 def show_login_form():
+    # if user is signed in already then send him to homepage
+    if 'username' in session:
+        return redirect(url_for('home'))
+
+    # otherwise show form to sign in
     return render_template(
         'login/login.html'
     )
@@ -28,11 +32,12 @@ def show_login_form():
 @app.post('/login')
 def sign_in():
     loginError = False
-    """ get form values """
+
+    # get form values
     username = request.form.get('username')
     password = request.form.get('password')
 
-    """ validation with DB  """
+    # validation with DB
     session['username'] = username
 
     if loginError:
@@ -58,8 +63,7 @@ def logout():
 # Profile Route
 @app.route('/profile/<string:username>')
 def profile(username):
-
-    """ check if user should have access to this profile """
+    # check if user should have access to this profile
     if username == session['username']:
         # User Data (from DB)
         data = {
