@@ -9,27 +9,18 @@
 {# handle error messages #}
 {% block dataStyle %}
   <style>
-  {% if errors %}
-    .flash_msgs::before {
-      background-color: red;
-    }
-    {% for error in errors %}
-    .{{error.field}}::after {
-      content: "{{error.field}} is invalid";
-      display: inline-block;
-      color: red;
-      margin-left: 1rem;
-      font-size:0.9rem
-    }
-    #{{error.field}} {
-      border: 1px solid red;
-    }
-    {% endfor %}
-  {% else %}
-    .flash_msgs::before {
-      background-color: #8dfe24;
-    }
-  {% endif %}
+  {% for error in errors %}
+  .{{error.field}}::after {
+    content: "{{error.field}} is invalid";
+    display: inline-block;
+    color: red;
+    margin-left: 1rem;
+    font-size:0.9rem
+  }
+  #{{error.field}} {
+    border: 1px solid red;
+  }
+  {% endfor %}
   </style>
 {% endblock %}
 
@@ -60,8 +51,8 @@
     </div>
   </div>
 </div>
-{% for message in get_flashed_messages() %}
-<div class="flash_msgs">
+{% for category, message in get_flashed_messages(with_categories=True) %}
+<div class="flash_msgs flash_msgs-{{category}}"">
   <small> {{ message }}</small>
 </div>
 {% endfor %}

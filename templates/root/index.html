@@ -6,20 +6,6 @@
 <link rel="stylesheet"  href="{{url_for('static', filename='css/home.css')}}"/>
 {% endblock cssFiles %}
 
-{% block dataStyle %}
-  <style>
- {% for category, message in get_flashed_messages(with_categories=True) %}
-  .flash_msgs::before {
-    {% if category == 'success' %}
-    background-color: #8dfe24;
-    {% elif category == 'info' %}
-    background-color: white;
-    {% endif %}
-  }
-  {% endfor %}
-  </style>
-{% endblock %}
-
 {% block content %}
 <div class="container">
   {% if username %}       {# if user is signed in -> welcome him #}
@@ -38,10 +24,10 @@
     <h2>To view this page you need to sign in first.</h2>
     <button><a href="{{url_for('sign_in')}}">Sign In</a></button>
   {% endif %}
-  {% for message in get_flashed_messages() %}
-    <div class="flash_msgs">
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="flash_msgs flash_msgs-{{category}}">
       <small> {{ message }}</small>
     </div>
-    {% endfor %}
+  {% endfor %}
 </div>
 {% endblock %}

@@ -163,3 +163,15 @@ button:hover::after {
     left: 0;
     top: 0;
 }
+
+.flash_msgs-error::before {
+    background-color: red;
+}
+
+.flash_msgs-success::before {
+    background-color: #8dfe24;
+}
+
+.flash_msgs-info::before {
+    background-color: white;
+}
