@@ -51,10 +51,5 @@
     </div>
   </div>
 </div>
-{% for category, message in get_flashed_messages(with_categories=True) %}
-<div class="flash_msgs flash_msgs-{{category}}"">
-  <small> {{ message }}</small>
-</div>
-{% endfor %}
 {% endblock %}
 

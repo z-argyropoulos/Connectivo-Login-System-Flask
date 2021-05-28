@@ -24,10 +24,5 @@
     <h2>To view this page you need to sign in first.</h2>
     <button><a href="{{url_for('sign_in')}}">Sign In</a></button>
   {% endif %}
-  {% for category, message in get_flashed_messages(with_categories=True) %}
-    <div class="flash_msgs flash_msgs-{{category}}">
-      <small> {{ message }}</small>
-    </div>
-  {% endfor %}
 </div>
 {% endblock %}
