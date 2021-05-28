@@ -178,3 +178,12 @@ svg {
         flex: 1 0 100%;
     }
 }
+
+/* FORM ERRORS */
+.username::after, .password::after {
+    content: "";
+    display: inline-block;
+    color: red;
+    margin-left: 1rem;
+    font-size:0.9rem
+}

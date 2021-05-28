@@ -12,10 +12,6 @@
   {% for error in errors %}
   .{{error.field}}::after {
     content: "{{error.field}} is invalid";
-    display: inline-block;
-    color: red;
-    margin-left: 1rem;
-    font-size:0.9rem
   }
   #{{error.field}} {
     border: 1px solid red;
