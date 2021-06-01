@@ -23,10 +23,10 @@ def show_login_form():
     # if user is signed in already then send him to homepage
     if 'username' in session:
         return redirect(url_for('home'))
-
     # otherwise show form to sign in
     return render_template(
-        'login/login.html'
+        'login/login.html',
+        usernameCookie=request.cookies.get('user')
     )
 
 
@@ -55,7 +55,10 @@ def sign_in():
         # set session timeout to 10 days (flask default 31days)
         app.permanent_session_lifetime = timedelta(minutes=10)
         flash('You were successfully logged in.', 'success')
-        return redirect(url_for('home'))
+        # set cookie for username (set cookie before redirect)
+        rdr = redirect(url_for('home'))
+        rdr.set_cookie('user', username, max_age=timedelta(minutes=10))
+        return rdr
 
 
 # Logout Route
