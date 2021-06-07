@@ -118,15 +118,9 @@ label {
 
 button {
     width: 100%;
-    border: 1px solid black;
     font-weight: 400;
     font-family: inherit;
     font-size: 1.3rem;
-    padding: 0.7rem 1.2rem;
-    cursor: pointer;
-    border-radius: 60px;
-    background: rgba(0, 0, 0, 0);
-    position: relative;
 }
 
 button::after {

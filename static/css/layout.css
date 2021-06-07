@@ -29,7 +29,7 @@ a {
 button {
     padding: 0.5rem 1rem;
     border: 1px solid black;
-    border-radius: 7px;
+    border-radius: 50px;
     background: rgba(0, 0, 0, 0);
     transition: 0.3s;
     position: relative;
