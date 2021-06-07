@@ -26,15 +26,15 @@
     <div class="prof-img">
       <img src="{{ url_for('static', filename='img/profiles/{}.jpg'.format(profileData['username']))}}" alt="{{profileData['username']}}'s profile image" />
     </div>
-     <span class="last-login"><u>Last seen:</u> {{ profileData['last-seen'] }}</span>
-    <h2 class="prof-name">{{ profileData['fullname'] }}</h2>
+     <span class="last-login"><u>Last seen:</u> {{ profileData['last_login'][0:10] }}</span>
+    <h2 class="prof-name">{{ profileData['first_name'] }} {{ profileData['last_name'] }}</h2>
     <div class="prof-main">
       <div class="prof-details">
         <h3>Details</h3>      {# in future replace fields with for and list keys #}
         <ul>
           <li><b>Username: </b>{{ profileData['username'] }}</li>
           <li><b>Email: </b>{{ profileData['email'] }}</li>
-          <li><b>Nationality: </b>{{ profileData['nationality'] }}</li>
+          <li><b>Nationality: </b>{{ profileData['nationality']|capitalize }}</li>
           <li><b>Mobile Phone: </b>{{ profileData['mobile'] }}</li>
           <li>
             <b>About: </b> {{ profileData['about'] }}

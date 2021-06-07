@@ -1,11 +1,39 @@
-from flask import Flask, render_template, abort, request, session, url_for, redirect, flash
+from flask import Flask, render_template, abort, request, session, url_for, redirect, flash, g
 from os import environ
 from datetime import timedelta
+import sqlite3
+from pathlib import Path
 
 app = Flask(__name__)
 
 # SESSION KEY
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY', '1234')
+
+# DB
+DATABASE_PATH = Path(__file__).parent / 'data/login.db'
+
+
+# SET CONNECTION WITH DB
+def get_db():
+    if not hasattr(g, 'conn'):
+        app.logger.debug(f"» New Connection requested from endpoint '{request.endpoint}'")
+        conn = sqlite3.connect(DATABASE_PATH)
+        conn.row_factory = sqlite3.Row
+        setattr(g, 'conn', conn)
+    return g.conn
+
+
+# TERMINATE CONNECTION WITH DB
+@app.teardown_appcontext
+def close_connection(ctx):
+    '''
+    Close connection on appcontext teardown
+    This will fire whether there was an exception or not
+    '''
+    if conn := g.pop('conn', None):
+        app.logger.debug('» Teardown AppContext')
+        app.logger.debug('» Connection closed')
+        conn.close()
 
 
 # Root Route
@@ -79,19 +107,25 @@ def logout():
 def profile(username):
     # check if user should have access to this profile
     if username == session['username']:
+        app.logger.debug(username)
         # User Data (from DB)
-        data = {
-            'fullname': 'Noah Tremblay',
-            'username': username,
-            'email': 'noah_trembl01@gmail.com',
-            'nationality': 'can',        # Canada -> can (in future dictionary)
-            'mobile': '6967854895',
-            'about': '''Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Eius commodi veniam placeat voluptatum totam voluptate quo suscipit
-            non ex um.''',
-            'interests': ['Cooking', 'Football', 'Volunteering', 'Running'],
-            'last-seen': '5 mins ago'     # in future function date -> elapsed time
-        }
+        cur = get_db().cursor()
+        data = cur.execute(
+            '''
+            SELECT [username],
+                [first_name],
+                [last_name],
+                [email],
+                [nationality],
+                [mobile],
+                [about],
+                [last_login]
+            FROM [user]
+            WHERE [username] = :username
+            ''',
+            {"username": username}
+        ).fetchone()
+        cur.close()
     else:
         abort(401)
 
