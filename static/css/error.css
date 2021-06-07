@@ -1,3 +1,9 @@
+:root {
+    --dark-main: #0a0a0a;
+    --dark-sec: #1d1d1d;
+    --accent: #cc77fd;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +12,9 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 40%, #e6dee9 100%);
+    background: var(--dark-main);
     min-height: 100vh;
+    color: white;
 }
 
 #errorContainer {
@@ -92,23 +99,5 @@ button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     cursor: pointer;
-}
-
-button::after {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    background-color: rgb(146, 134, 255); /* default */
-    border-radius: inherit;
-}
-
-button:hover::after {
-    transition: width 0.5s ease-in-out;
-    width: 100%;
+    background: var(--accent);
 }

@@ -1,4 +1,9 @@
 /* GENERAL */
+:root {
+    --dark-main: #0a0a0a;
+    --dark-sec: #1d1d1d;
+    --accent: #cc77fd;
+}
 
 * {
     margin: 0;
@@ -8,8 +13,9 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 40%, #e6dee9 100%);
+    background: var(--dark-main);
     min-height: 100vh;
+    color: white;
 }
 
 .container {
@@ -18,19 +24,20 @@ body {
     width: 95%;
 }
 
-/* BUTTONS/A HOVER EFFECT */
-
 a {
     text-decoration: none;
     color: black;
     font-size: 0.9rem;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    display: block;
 }
 
+
 button {
-    padding: 0.5rem 1rem;
     border: 1px solid black;
     border-radius: 50px;
-    background: rgba(0, 0, 0, 0);
+    background: var(--accent);
     transition: 0.3s;
     position: relative;
     font-family: 'Montserrat', sans-serif;
@@ -38,23 +45,8 @@ button {
     cursor: pointer;
 }
 
-button::after {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    background-color: rgb(146, 134, 255); /* default */
-    border-radius: inherit;
-}
-
-button:hover::after {
-    transition: width 0.5s ease-in-out;
-    width: 100%;
+button:hover {
+    transform: scale(1.08);
 }
 
 /* STICKY TOP */
@@ -103,6 +95,7 @@ button:hover::after {
     height: 100%;
     display: flex;
     align-items: center;
+    color: white;
 }
 
 .user-profile img {
@@ -112,6 +105,10 @@ button:hover::after {
 
 .user-profile button {
     margin-left: 0.5rem;
+}
+
+.user-profile button a {
+    color: black;
 }
 
 @media (max-width:500px) {
@@ -125,8 +122,8 @@ button:hover::after {
 
 /* LOGOUT BUTTON */
 
-#logout::after {
-    background-color: rgb(255, 70, 70);
+#logout {
+    background-color: rgb(255, 67, 67);
 }
 
 /* FLASH MESSAGES */

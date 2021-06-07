@@ -5,11 +5,11 @@
     max-width: 1400px;
     min-height: 500px;
     padding: 0 1.8rem;
-    background: rgb(200, 185, 255, 0.5);
+    background: var(--dark-sec);
     margin: 0 auto 2rem auto;
     border-radius: 20px;
-    box-shadow: 0 2px 5px rgb(87, 87, 87, 0.6);
     position: relative;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.9);
 }
 
 /* PROFILE IMAGE */
@@ -104,31 +104,6 @@ ul{
 @media (max-width: 485px) {
     .prof-main > div {
         padding: 0;
-    }
-}
-
-/* DETAILS/INTERESTS SEPERATOR */
-
-.prof-details {
-    position: relative;
-}
-
-.prof-details::after {
-    content: "";
-    width: 2px;
-    display: block;
-    background-color: rgb(131, 131, 131);
-    height: 70px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 35%;
-}
-
-@media (max-width: 768px) {
-    .prof-details::after {
-        width: 0;
     }
 }
 

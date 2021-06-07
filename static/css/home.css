@@ -20,4 +20,8 @@ h1,h2 {
     margin: 2rem 0;
 }
 
+.redirects button:first-child {
+    margin-right: 0.5rem;
+}
+
 
