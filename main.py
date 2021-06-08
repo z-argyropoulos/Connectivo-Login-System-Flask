@@ -121,30 +121,46 @@ def logout():
 # Profile Route
 @app.route('/profile/<string:username>')
 def profile(username):
-    # check if user should have access to this profile
-    if username == session['username']:
-        app.logger.debug(username)
-        # User Data (from DB)
-        cur = get_db().cursor()
-        data = cur.execute(
-            '''
-            SELECT [username],
-                [first_name],
-                [last_name],
-                [email],
-                [nationality],
-                [mobile],
-                [about],
-                [last_login]
-            FROM [user]
-            WHERE [username] = :username
-            ''',
-            {"username": username}
-        ).fetchone()
-        cur.close()
+    # check for username existance
+    cur = get_db().cursor()
+    usernameExists = cur.execute(
+        '''
+        SELECT [username]
+        FROM [user]
+        WHERE [username] = :username
+        ''',
+        {'username': username}
+    ).fetchone()
+    cur.close()
+    if usernameExists:
+        # redirect to login if not signed in and username exists
+        if 'username' not in session:
+            return redirect(url_for('show_login_form'))
+        # check if user should have access to this profile
+        if username == session['username']:
+            app.logger.debug(username)
+            # User Data (from DB)
+            cur = get_db().cursor()
+            data = cur.execute(
+                '''
+                SELECT [username],
+                    [first_name],
+                    [last_name],
+                    [email],
+                    [nationality],
+                    [mobile],
+                    [about],
+                    [last_login]
+                FROM [user]
+                WHERE [username] = :username
+                ''',
+                {"username": username}
+            ).fetchone()
+            cur.close()
+        else:
+            abort(401)
     else:
-        abort(401)
-
+        abort(404)
     # Render profile page
     return render_template(
         'profile/profile.html',
