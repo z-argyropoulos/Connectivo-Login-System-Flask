@@ -16,7 +16,6 @@
             <h1>{{errorCode}}</h1>
             <h1>{% block subHeading %}{% endblock %}</h1>
             <p>{% block description %}{% endblock %}</p>
-            {% block redirect %}{% endblock redirect %}
         </div>
         <div class="error-svg">
           <img src="{{url_for('static', filename='img/error/{0}.svg'.format(errorCode))}}" alt="{{ errorMessage }}"/>
