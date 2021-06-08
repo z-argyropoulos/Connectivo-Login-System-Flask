@@ -35,10 +35,10 @@
       <div class="sign-in">
         <img class="sign-in-img" src="{{url_for('static', filename='img/icons/login.svg')}}" />
         <form action="{{ url_for('sign_in') }}" method='post'>
-          <label class="username" for="username">Username</label><br />
-          <input type="text" id="username" name="username" value="{{ usernameCookie if usernameCookie else ''}}" /><br />
-          <label class="password" for="password">Password</label><br />
-          <input type="password" id="password" name="password" /><br />
+          <label class="username" for="username">Username</label>
+          <input type="text" id="username" name="username" value="{{ usernameCookie if usernameCookie else ''}}" />
+          <label class="password" for="password">Password</label>
+          <input type="password" id="password" name="password" />
           <button type="submit">
             <span class="button-text">Sign In</span>
             <img class="sign-in-svg" src="{{ url_for('static', filename='img/icons/sign-in.svg')}}" alt="Sign In icon">
