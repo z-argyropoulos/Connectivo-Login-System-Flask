@@ -63,21 +63,37 @@ def sign_in():
     errors = []
 
     # get form values
-    username = request.form.get('username')
-    password = request.form.get('password')
+    formUsername = request.form.get('username')
+    formPassword = request.form.get('password')
 
     # validation with DB
-    # error with username
-    """ errors.append({'field': 'username'}) """
-    # error with password
-    """ errors.append({'field': 'password'}) """
-
+    # check for username existance
+    cur = get_db().cursor()
+    checkLogin = cur.execute(
+        '''
+        SELECT [username], [password]
+        FROM [user]
+        WHERE [username] = :username
+        ''',
+        {'username': formUsername}
+    ).fetchone()
+    cur.close()
+    # user exists
+    if checkLogin:
+        # password is incorrect
+        if checkLogin['password'] != formPassword:
+            errors.append({'field': 'password'})
+    else:
+        # username does not exist
+        errors.append({'field': 'username'})
+        errors.append({'field': 'password'})
+    # if username or/and password is incorrect -> error
     if errors:
         flash('Invalid Credentials. Please try again.', 'error')
         return render_template('login/login.html', errors=errors)
     else:
         # initialize a session
-        session['username'] = username
+        session['username'] = formUsername
         # set session to be alive even when you close the browser
         session.permanent = True
         # set session timeout to 10 days (flask default 31days)
@@ -85,7 +101,7 @@ def sign_in():
         flash('You were successfully logged in.', 'success')
         # set cookie for username (set cookie before redirect)
         rdr = redirect(url_for('home'))
-        rdr.set_cookie('user', username, max_age=timedelta(minutes=10))
+        rdr.set_cookie('user', formUsername, max_age=timedelta(minutes=10))
         return rdr
 
 
