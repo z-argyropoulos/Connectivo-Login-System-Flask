@@ -65,11 +65,27 @@ button:hover {
     justify-content: center;
     align-items: center;
     height: 100%;
+    color: white;
+    padding: 0;
 }
 
 .stickyTop img {
     width: 40px;
     margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .logo h1{
+        font-size: 1.4em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
 }
 
 @media (max-width: 900px) {

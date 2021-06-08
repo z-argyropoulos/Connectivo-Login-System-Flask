@@ -1,23 +1,17 @@
-h1,h2 {
-    margin: 1rem 0;
+h1{
+    margin: 2rem 0;
 }
 
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.8em;
-    }
+h2 {
+    margin: 0.5rem 0;
+}
 
-    h2 {
-        font-size: 1.2em;
-    }
+.logo h1 {
+    margin: 0;
 }
 
 .username {
     font-weight: bold;
-}
-
-.redirects {
-    margin: 2rem 0;
 }
 
 .redirects button:first-child {
