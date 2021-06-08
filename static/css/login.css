@@ -131,10 +131,18 @@ form button {
     padding: 0.5rem 1rem;
 }
 
-svg {
+.sign-in-svg {
+    width: 22px;
     position: absolute;
-    top: 30%;
-    right: 20px;
+    left: 66%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.5s;
+}
+
+.sign-in button:hover .sign-in-svg{
+    left: 88%;
+    transition: left 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 @media (max-width: 900px) {
@@ -168,8 +176,8 @@ svg {
         justify-content: center;
     }
 
-    .sign-in img {
-        width: 200px;
+    .sign-in-img {
+        width: 250px;
     }
 
     form {

@@ -33,7 +33,7 @@
     </div>
     <div class="login">
       <div class="sign-in">
-        <img src="{{url_for('static', filename='img/icons/login.svg')}}" />
+        <img class="sign-in-img" src="{{url_for('static', filename='img/icons/login.svg')}}" />
         <form action="{{ url_for('sign_in') }}" method='post'>
           <label class="username" for="username">Username</label><br />
           <input type="text" id="username" name="username" value="{{ usernameCookie if usernameCookie else ''}}" /><br />
@@ -41,7 +41,8 @@
           <input type="password" id="password" name="password" /><br />
           <button type="submit">
             <span class="button-text">Sign In</span>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z" fill="#626262"/></svg></button>
+            <img class="sign-in-svg" src="{{ url_for('static', filename='img/icons/sign-in.svg')}}" alt="Sign In icon">
+          </button>
         </form>
       </div>
     </div>
