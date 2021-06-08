@@ -100,7 +100,8 @@ def sign_in():
         app.permanent_session_lifetime = timedelta(minutes=10)
         flash('You were successfully logged in.', 'success')
         # set cookie for username (set cookie before redirect)
-        rdr = redirect(url_for('home'))
+        url = session['url'] if 'url' in session else url_for('home')
+        rdr = redirect(url)
         rdr.set_cookie('user', formUsername, max_age=timedelta(minutes=10))
         return rdr
 
@@ -135,6 +136,8 @@ def profile(username):
     if usernameExists:
         # redirect to login if not signed in and username exists
         if 'username' not in session:
+            # save url endpoint and args for redirection from login
+            session['url'] = url_for('profile', username=username)
             return redirect(url_for('show_login_form'))
         # check if user should have access to this profile
         if username == session['username']:
