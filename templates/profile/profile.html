@@ -12,9 +12,9 @@
       background: url("{{ url_for('static', filename='img/icons/flags/{countryCode}.png'.format(countryCode=profileData['nationality'])) }}");
     }
 
-    {% for interest in profileData['interests'] %}    {# for every interest set image with the use of index #}
+    {% for interest in interests %}    {# for every interest set image with the use of index #}
       .prof-interests ul li:nth-child({{ loop.index }})  {
-        background-image: url("{{ url_for('static', filename='img/interests/{}.jpg'.format(interest)) }}")
+        background-image: url("{{ url_for('static', filename='img/interests/{}.jpg'.format(interest['id'])) }}")
       }
     {% endfor %}
   </style>
@@ -44,8 +44,8 @@
       <div class="prof-interests">
         <h3>Interests</h3>
         <ul>
-          {% for interest in profileData['interests'] %}
-            <li><h4 class="interest">{{interest}}</h4></li>
+          {% for interest in interests %}
+            <li><h4 class="interest">{{interest['description']}}</h4></li>
           {% endfor %}
         </ul>
       </div>

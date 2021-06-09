@@ -160,6 +160,20 @@ def profile(username):
                 {"username": username}
             ).fetchone()
             cur.close()
+            # Interests of this user
+            cur = get_db().cursor()
+            interests = cur.execute(
+                '''
+                SELECT i.id, i.description
+                FROM [user] u
+                INNER JOIN [user_interest] ui ON u.username = ui.user_username
+                INNER JOIN [interest] i ON ui.interest_id = i.id
+                WHERE u.username = :username
+                ''',
+                {'username': username}
+            ).fetchall()
+            cur.close()
+            app.logger.debug(interests)
         else:
             abort(401)
     else:
@@ -168,6 +182,7 @@ def profile(username):
     return render_template(
         'profile/profile.html',
         profileData=data,
+        interests=interests,
         username=username
     )
 
