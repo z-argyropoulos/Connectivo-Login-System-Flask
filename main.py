@@ -137,7 +137,8 @@ def profile(username):
         # redirect to login if not signed in and username exists
         if 'username' not in session:
             # save url endpoint and args for redirection from login
-            session['url'] = url_for('profile', username=username)
+            session['url'] = request.url
+            app.logger.debug(session['url'])
             return redirect(url_for('show_login_form'))
         # check if user should have access to this profile
         if username == session['username']:
