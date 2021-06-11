@@ -1,7 +1,8 @@
 <h1>Flask Login System (w/ Jinja Template Engine)</h1>
 
->This application is also running on my domain:
-<https://hrsargyropoulos.com/login-system-flask/login>
+>GitHub Repo: <https://github.com/HRSArgyropoulos/FlaskAssignment>
+
+>Application on my domain: <https://hrsargyropoulos.com/login-system-flask/>
 
 <h2>Details</h2>
 
