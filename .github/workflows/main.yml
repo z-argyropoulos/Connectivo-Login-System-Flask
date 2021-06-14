@@ -14,4 +14,4 @@ jobs:
         server: ftp.hrsargyropoulos.com
         username: hrsargyropoulos
         password: ${{ secrets.ftp_password }}
-        server-dir: ./public_html/test_ftp
+        server-dir: ./public_html/test_ftp/
