@@ -21,4 +21,20 @@
 
 <br>
 
+<h2>How to run project locally</h2>
+
+- Clone this repo
+- Run ```python -m venv .venv``` to create .venv folder
+- Run ```.\.venv\Scripts\activate``` to activate venv environment
+- Run ```pip install -r .\requirements.txt``` to install all project requirements
+- Run ```flask run```
+- Open http://localhost:5000/ in the browser
+
+<h2>Preview</h2>
+
+![Connectivo 1](previews/connectivo1.png)
+![Connectivo 2](previews/connectivo2.png)
+![Connectivo 3](previews/connectivo3.png)
+![Connectivo 4](previews/connectivo4.png)
+
 <small>All rights reserved except for images, graphics, icons, svgs.</small>
